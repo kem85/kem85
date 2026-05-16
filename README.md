@@ -2,37 +2,37 @@
 
 ![Purple Minimal Banner](https://capsule-render.vercel.app/api?type=waving&color=8e44ad&height=180&section=header&text=Hi%20there,%20I'm%20Karim%20👋&fontSize=50&fontColor=ffffff)
 
-## 👨‍💻 Full Stack Web Developer
+## 📊 Data Scientist & Developer
 
-I'm a passionate full stack web developer with experience building dynamic and scalable applications. <br>My main focus is on modern, efficient, and user-friendly web solutions.
+I'm a passionate Data Scientist and developer focused on extracting insights from data, building predictive models, and creating scalable data-driven solutions.
 
 ---
 
-### 🛠️ Tech Stack
+### 🛠️ Tech Stack & Skills
 
-<!-- Using clean Markdown for better readability and a modern layout -->
-**Languages**
-`Python` • `JavaScript` • `TypeScript` • `C++` • `Java` • `SQL`
+<!-- Prioritizing Data Science and keeping web dev as a secondary skill strength -->
+**Data Science & Machine Learning**
+`Python` • `R` • `SQL`
 
-**Frontend & Backend**
-`React` • `Express`
+**Databases & Storage**
+`SQL` • `MongoDB`
 
-**Databases**
-`MongoDB` • `SQL`
+**Web Development & Deployment**
+`JavaScript` • `TypeScript` • `React` • `Express` • `C++` • `Java`
 
 ---
 
 ### 🚀 Featured Project
 
 #### **ChatApp**  
-Just launched a fully functional ChatApp—designed to make real-time communication seamless and enjoyable! <br> *(Ask me for a demo or check out the repo!)*
+Launched a fully functional, real-time ChatApp—designed to handle seamless communication data streams and concurrent user connections efficiently! <br> *(Ask me for a demo or check out the repo!)*
 
 ---
 
 ### 🌱 Currently Learning
 
-*   Deepening my React skills
-*   Further enhancing my backend expertise
+*   Advanced Machine Learning & Deep Learning frameworks
+*   Scaling data pipelines and analytics
 
 ---
 
@@ -51,7 +51,7 @@ Thanks for visiting!
 
 <br>
 
-<!-- Profile Views Counter at the footer -->
+<!-- Profile Views Counter -->
 <img src="https://komarev.com/ghpvc/?username=kem85&style=plastic&color=blueviolet" alt="Profile Views"/>
 
 </div>
