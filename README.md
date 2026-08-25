@@ -30,8 +30,8 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
       <h3 align="center">♟️ Chess-AI</h3>
       <p align="center">
         <b>AlphaZero Neural Engine & Web Arena</b><br/>
-        <a href="https://chess-ai-ml.streamlit.app/">🌐 <b>Live Web App</b></a> • 
-        <a href="https://github.com/kem85/Chess-Ai">💻 <b>GitHub Repo</b></a>
+        <a href="https://chess-ai-ml.streamlit.app/">🌐 <b>Demo Web App</b></a> • 
+        <a href="https://github.com/kem85/Chess-Ai">💻 <b>Explore Repository</b></a>
       </p>
       <p>AlphaZero-inspired deep residual neural chess engine featuring dual-head ResNet (4,864 action planes), MCTS & Minimax search, ONNX INT8 acceleration, and interactive browser arena.</p>
       <p align="center">
@@ -45,9 +45,8 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
       <h3 align="center">⚡ OmniTab-ML</h3>
       <p align="center">
         <b>Tabular Auto-ML & Deep Learning</b><br/>
-        <a href="https://omnitab-ml.streamlit.app/">🌐 <b>Streamlit App</b></a> • 
-        <a href="https://huggingface.co/spaces/kem850/OmniTab-ML">🤗 <b>Hugging Face</b></a> • 
-        <a href="https://github.com/kem85/OmniTab-ML">💻 <b>Repo</b></a>
+        <a href="https://omnitab-ml.streamlit.app/">🌐 <b>Demo Web App</b></a> • 
+        <a href="https://github.com/kem85/OmniTab-ML">💻 <b>Explore Repository</b></a>
       </p>
       <p>Universal zero-leakage Tabular Auto-ML & Deep Learning engine with PyTorch Tabular ResNet, Bayesian Optuna tuning, and interactive cloud playgrounds.</p>
       <p align="center">
