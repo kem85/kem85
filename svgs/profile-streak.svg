@@ -1,8 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" fill="none">
   <style>
-    * {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
+    * { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
     .bg { fill: #141321; stroke: #1e1e2e; stroke-width: 1; }
     .num { font-size: 30px; font-weight: 700; fill: #70a5fd; }
     .lbl { font-size: 14px; font-weight: 500; fill: #388bfd; }
@@ -14,41 +12,28 @@
     .flame { fill: #70a5fd; }
   </style>
   
-  <!-- Background Card -->
   <rect x="1" y="1" width="493" height="193" rx="6" class="bg"/>
   
-  <!-- LEFT: Total Contributions -->
   <g transform="translate(82, 65)">
     <text x="0" y="0" class="num" text-anchor="middle">227</text>
     <text x="0" y="32" class="lbl" text-anchor="middle">Total Contributions</text>
     <text x="0" y="58" class="date" text-anchor="middle">Nov 29, 2021 - Present</text>
   </g>
 
-  <!-- Divider 1 -->
   <line x1="165" y1="28" x2="165" y2="167" class="div-line"/>
 
-  <!-- CENTER: Current Streak -->
   <g transform="translate(247, 68)">
-    <!-- Ring positioned with clean gap flanking the flame -->
     <circle cx="0" cy="0" r="28" class="ring" stroke-dasharray="148 27.9" stroke-dashoffset="-13.9" transform="rotate(-90)"/>
-    
-    <!-- Flame Icon Sitting Exactly In-Line with Ring Perimeter -->
     <g transform="translate(0, -28) scale(0.8) translate(-12, -11.64)">
       <path class="flame" fill-rule="evenodd" d="M11.18 11.53 C11.72 10.76 11.66 9.96 11.28 8.5 C10.53 5.63 10.83 4.05 13.41 2.19 L14.68 1.28 L14.98 2.8 C15.3 4.42 15.84 5.43 17.2 7.35 C17.31 7.51 17.31 7.51 17.31 7.51 C19.28 10.29 20 11.96 20 15 C20 18.69 16.27 22 12 22 C7.73 22 4 18.69 4 15 C3.9 12.27 4.33 10.43 6.1 8.44 L8.42 6.37 L8.93 7.63 C9.3 8.56 9.74 9.29 10.23 9.82 C10.65 10.28 10.96 10.85 11.18 11.53 Z M7.59 9.76 C6.24 11.29 5.91 12.66 5.99 14.55 C6 14.9 6 14.89 6 15 C6 17.53 8.78 20 12 20 C15.22 20 18 17.53 18 15 C18 12.46 17.43 11.14 15.68 8.66 C14.51 7.01 13.87 5.97 13.46 4.8 C12.77 5.62 12.81 6.44 13.22 8 C13.97 10.87 13.67 12.45 11.09 14.31 L9.61 15.37 L9.5 13.56 C9.43 12.4 9.17 11.62 8.77 11.18 C8.37 10.75 8.01 10.24 7.68 9.66 Z"/>
     </g>
-    
-    <!-- Centered Streak Count -->
     <text x="0" y="9" class="cur-num" text-anchor="middle">6</text>
-    
-    <!-- Labels -->
     <text x="0" y="50" class="cur-lbl" text-anchor="middle">Current Streak</text>
     <text x="0" y="72" class="date" text-anchor="middle">Aug 21 - Aug 26</text>
   </g>
 
-  <!-- Divider 2 -->
   <line x1="330" y1="28" x2="330" y2="167" class="div-line"/>
 
-  <!-- RIGHT: Longest Streak -->
   <g transform="translate(415, 65)">
     <text x="0" y="0" class="num" text-anchor="middle">6</text>
     <text x="0" y="32" class="lbl" text-anchor="middle">Longest Streak</text>
