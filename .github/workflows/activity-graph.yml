@@ -1,0 +1,37 @@
+name: Generate Activity Graph & Stats
+
+on:
+  schedule:
+    - cron: "0 */12 * * *" # Updates every 12 hours
+  workflow_dispatch: # Allows manual run button
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Generate Activity Graph SVG
+        uses: Ashutosh00710/github-readme-activity-graph@v0.0.10
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: kem85
+          THEME: tokyo-night
+          AREA: true
+          HIDE_BORDER: true
+          BG_COLOR: "0d1117"
+          COLOR: "a855f7"
+          LINE: "a855f7"
+          POINT: "c084fc"
+          OUTPUT_PATH: "profile-activity-graph.svg"
+
+      - name: Commit and Push SVG
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add profile-activity-graph.svg
+          git commit -m "chore: update activity graph [skip ci]" || exit 0
+          git push
