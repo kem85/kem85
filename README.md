@@ -123,21 +123,14 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
 <div align="center">
 
   <!-- Row 1: Streak Card & Top Languages by Commit Side-by-Side -->
-  <a href="https://github.com/kem85">
-    <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/profile-streak.svg" alt="GitHub Streak" width="57%" />
-  </a>
+  <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/profile-streak.svg" alt="GitHub Streak" width="57%" />
   &nbsp;
-  <a href="https://github.com/kem85">
-    <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/top-languages.svg" alt="Top Languages by Commit" width="39%" />
-  </a>
-
+  <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/top-languages.svg" alt="Top Languages by Commit" width="39%" />
   <br/><br/>
-
+  
   <!-- Row 2: Contribution Area Graph -->
-  <a href="https://github.com/kem85">
-    <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/profile-activity-graph.svg" alt="Karim's Contribution Graph" width="98%" />
-  </a>
-
+  ---
+  <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/profile-activity-graph.svg" alt="Karim's Contribution Graph" width="98%" />
 </div>
 
 
