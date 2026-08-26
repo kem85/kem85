@@ -1,9 +1,9 @@
-name: Generate Activity Graph & Stats
+name: Generate Activity Graph & Profile Stats
 
 on:
   schedule:
-    - cron: "0 */12 * * *" # Updates every 12 hours
-  workflow_dispatch: # Allows manual run button
+    - cron: "0 * * * *" # Runs automatically every hour
+  workflow_dispatch: # Allows manual one-click refresh
 
 jobs:
   build:
@@ -14,8 +14,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 1. Generate Activity Area Graph SVG
       - name: Generate Activity Graph SVG
-        uses: Ashutosh00710/github-readme-activity-graph@v0.0.10
+        uses: Ashutosh00710/github-readme-activity-graph@master
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: kem85
@@ -28,10 +29,20 @@ jobs:
           POINT: "c084fc"
           OUTPUT_PATH: "profile-activity-graph.svg"
 
-      - name: Commit and Push SVG
+      # 2. Generate Stats & Summary Cards
+      - name: Generate Profile Summary Cards
+        uses: vncloudtech/github-profile-summary-cards@release
+        with:
+          USERNAME: kem85
+          BRANCH_NAME: main
+          UTC_OFFSET: 3
+          THEME: tokyonight
+
+      # 3. Commit and Push all generated SVGs
+      - name: Commit and Push All SVGs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add profile-activity-graph.svg
-          git commit -m "chore: update activity graph [skip ci]" || exit 0
+          git add profile-activity-graph.svg profile-summary-card-output/ || true
+          git commit -m "chore: update profile stats and activity graph [skip ci]" || exit 0
           git push
