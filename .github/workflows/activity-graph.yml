@@ -1,9 +1,9 @@
-name: Generate Profile Stats & Graph
+name: Generate Profile Streak & Graph
 
 on:
   schedule:
     - cron: "0 * * * *" # Runs hourly
-  workflow_dispatch:
+  workflow_dispatch: # Allows manual one-click refresh
 
 jobs:
   build:
@@ -14,39 +14,126 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 1. Generate Summary Cards (Profile Details & Stats)
-      - name: Generate Summary Cards
-        uses: vn7n24fzkq/github-profile-summary-cards@release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          USERNAME: kem85
-          BRANCH_NAME: main
-          UTC_OFFSET: 3
-          THEME: tokyonight
-
-      # 2. Generate the Contribution Area Graph SVG
-      - name: Generate Contribution Graph SVG
+      # Generate Native Streak Card & Activity Area Graph SVGs
+      - name: Generate Streak and Activity Graph SVGs
         run: |
           python -c "
           import urllib.request, json, datetime
 
-          url = 'https://github-contributions-api.jogruber.de/v4/kem85?y=last'
+          # Fetch full contribution dataset
+          url = 'https://github-contributions-api.jogruber.de/v4/kem85?y=all'
           req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
           with urllib.request.urlopen(req) as r:
               data = json.loads(r.read())
 
           contributions = data.get('contributions', [])
-          total = sum(c['count'] for c in contributions)
+          contributions.sort(key=lambda x: x['date'])
+          total_all = sum(c['count'] for c in contributions)
 
+          # Calculate longest streak
+          longest_streak = 0
+          best_start, best_end = None, None
+          temp_streak = 0
+          temp_start = None
+
+          for c in contributions:
+              if c['count'] > 0:
+                  if temp_streak == 0:
+                      temp_start = c['date']
+                  temp_streak += 1
+                  if temp_streak > longest_streak:
+                      longest_streak = temp_streak
+                      best_start = temp_start
+                      best_end = c['date']
+              else:
+                  temp_streak = 0
+                  temp_start = None
+
+          # Calculate current streak
+          cur_streak = 0
+          cur_s, cur_e = None, None
+          for c in reversed(contributions):
+              if c['count'] > 0:
+                  if cur_streak == 0:
+                      cur_e = c['date']
+                  cur_streak += 1
+                  cur_s = c['date']
+              else:
+                  if cur_streak > 0:
+                      break
+
+          def fmt_range(s, e):
+              if not s or not e: return 'No streak yet'
+              s_dt = datetime.datetime.strptime(s, '%Y-%m-%d')
+              e_dt = datetime.datetime.strptime(e, '%Y-%m-%d')
+              if s_dt.year == e_dt.year:
+                  return f'{s_dt.strftime(\"%b %d\")} - {e_dt.strftime(\"%b %d\")}'
+              return f'{s_dt.strftime(\"%b %d, %Y\")} - {e_dt.strftime(\"%b %d, %Y\")}'
+
+          cur_range_str = fmt_range(cur_s, cur_e)
+          best_range_str = fmt_range(best_start, best_end)
+          first_str = 'Nov 29, 2021 - Present'
+
+          flame_path = 'M11.18 11.53 C11.72 10.76 11.66 9.96 11.28 8.5 C10.53 5.63 10.83 4.05 13.41 2.19 L14.68 1.28 L14.98 2.8 C15.3 4.42 15.84 5.43 17.2 7.35 C17.31 7.51 17.31 7.51 17.31 7.51 C19.28 10.29 20 11.96 20 15 C20 18.69 16.27 22 12 22 C7.73 22 4 18.69 4 15 C3.9 12.27 4.33 10.43 6.1 8.44 L8.42 6.37 L8.93 7.63 C9.3 8.56 9.74 9.29 10.23 9.82 C10.65 10.28 10.96 10.85 11.18 11.53 Z M7.59 9.76 C6.24 11.29 5.91 12.66 5.99 14.55 C6 14.9 6 14.89 6 15 C6 17.53 8.78 20 12 20 C15.22 20 18 17.53 18 15 C18 12.46 17.43 11.14 15.68 8.66 C14.51 7.01 13.87 5.97 13.46 4.8 C12.77 5.62 12.81 6.44 13.22 8 C13.97 10.87 13.67 12.45 11.09 14.31 L9.61 15.37 L9.5 13.56 C9.43 12.4 9.17 11.62 8.77 11.18 C8.37 10.75 8.01 10.24 7.68 9.66 Z'
+
+          # --- 1. STREAK CARD SVG ---
+          W_s, H_s = 495, 195
+          streak_svg = f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W_s}\" height=\"{H_s}\" viewBox=\"0 0 {W_s} {H_s}\" fill=\"none\">
+            <style>
+              * {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }}
+              .bg {{ fill: #141321; stroke: #1e1e2e; stroke-width: 1; }}
+              .num {{ font-size: 30px; font-weight: 700; fill: #70a5fd; }}
+              .lbl {{ font-size: 14px; font-weight: 500; fill: #388bfd; }}
+              .cur-num {{ font-size: 28px; font-weight: 700; fill: #bf91f3; }}
+              .cur-lbl {{ font-size: 14px; font-weight: 700; fill: #bf91f3; }}
+              .date {{ font-size: 11px; font-weight: 400; fill: #38bdae; }}
+              .div-line {{ stroke: #3b4261; stroke-width: 1.5; stroke-linecap: round; }}
+              .ring {{ stroke: #70a5fd; stroke-width: 3.5; fill: none; stroke-linecap: round; }}
+              .flame {{ fill: #70a5fd; }}
+            </style>
+            
+            <rect x=\"1\" y=\"1\" width=\"{W_s-2}\" height=\"{H_s-2}\" rx=\"6\" class=\"bg\"/>
+            
+            <g transform=\"translate(82, 65)\">
+              <text x=\"0\" y=\"0\" class=\"num\" text-anchor=\"middle\">{total_all}</text>
+              <text x=\"0\" y=\"32\" class=\"lbl\" text-anchor=\"middle\">Total Contributions</text>
+              <text x=\"0\" y=\"58\" class=\"date\" text-anchor=\"middle\">{first_str}</text>
+            </g>
+
+            <line x1=\"165\" y1=\"28\" x2=\"165\" y2=\"167\" class=\"div-line\"/>
+
+            <g transform=\"translate(247, 68)\">
+              <circle cx=\"0\" cy=\"0\" r=\"28\" class=\"ring\" stroke-dasharray=\"148 27.9\" stroke-dashoffset=\"-13.9\" transform=\"rotate(-90)\"/>
+              <g transform=\"translate(0, -28) scale(0.8) translate(-12, -11.64)\">
+                <path class=\"flame\" fill-rule=\"evenodd\" d=\"{flame_path}\"/>
+              </g>
+              <text x=\"0\" y=\"9\" class=\"cur-num\" text-anchor=\"middle\">{cur_streak}</text>
+              <text x=\"0\" y=\"50\" class=\"cur-lbl\" text-anchor=\"middle\">Current Streak</text>
+              <text x=\"0\" y=\"72\" class=\"date\" text-anchor=\"middle\">{cur_range_str}</text>
+            </g>
+
+            <line x1=\"330\" y1=\"28\" x2=\"330\" y2=\"167\" class=\"div-line\"/>
+
+            <g transform=\"translate(415, 65)\">
+              <text x=\"0\" y=\"0\" class=\"num\" text-anchor=\"middle\">{longest_streak}</text>
+              <text x=\"0\" y=\"32\" class=\"lbl\" text-anchor=\"middle\">Longest Streak</text>
+              <text x=\"0\" y=\"58\" class=\"date\" text-anchor=\"middle\">{best_range_str}</text>
+            </g>
+          </svg>'''
+
+          with open('profile-streak.svg', 'w', encoding='utf-8') as f:
+              f.write(streak_svg)
+
+          # --- 2. ACTIVITY GRAPH SVG (Last Year) ---
+          last_year_contribs = contributions[-365:] if len(contributions) >= 365 else contributions
           weeks = []
-          for i in range(0, len(contributions), 7):
-              chunk = contributions[i:i+7]
+          for i in range(0, len(last_year_contribs), 7):
+              chunk = last_year_contribs[i:i+7]
               weeks.append({'date': chunk[0]['date'], 'count': sum(c['count'] for c in chunk)})
 
-          W, H = 850, 260
+          W_g, H_g = 850, 260
           pad_l, pad_r, pad_t, pad_b = 45, 30, 65, 35
-          plot_w, plot_h = W - pad_l - pad_r, H - pad_t - pad_b
+          plot_w, plot_h = W_g - pad_l - pad_r, H_g - pad_t - pad_b
           max_val = max([w['count'] for w in weeks] or [10])
           max_val = max(max_val, 5)
 
@@ -72,26 +159,27 @@ jobs:
                   last_m = m_name
                   months.append((pad_l + (i / (n - 1)) * plot_w, m_name))
 
-          month_svg = '\n'.join([f'<text x=\"{x:.1f}\" y=\"{H - 12}\" fill=\"#64748b\" font-size=\"11\" font-family=\"Segoe UI, sans-serif\" text-anchor=\"middle\">{m}</text>' for x, m in months])
+          month_svg = '\n'.join([f'<text x=\"{x:.1f}\" y=\"{H_g - 12}\" fill=\"#64748b\" font-size=\"11\" font-family=\"Segoe UI, sans-serif\" text-anchor=\"middle\">{m}</text>' for x, m in months])
 
           grid_svg = []
           for v in [0, max_val // 2, max_val]:
               y = pad_t + plot_h - (v / max_val) * plot_h
-              grid_svg.append(f'<line x1=\"{pad_l}\" y1=\"{y:.1f}\" x2=\"{W - pad_r}\" y2=\"{y:.1f}\" stroke=\"#1e293b\" stroke-dasharray=\"3,3\" stroke-width=\"1\"/>')
+              grid_svg.append(f'<line x1=\"{pad_l}\" y1=\"{y:.1f}\" x2=\"{W_g - pad_r}\" y2=\"{y:.1f}\" stroke=\"#1e293b\" stroke-dasharray=\"3,3\" stroke-width=\"1\"/>')
               grid_svg.append(f'<text x=\"{pad_l - 10}\" y=\"{y + 4:.1f}\" fill=\"#64748b\" font-size=\"10\" font-family=\"Segoe UI, sans-serif\" text-anchor=\"end\">{v}</text>')
 
           grid_str = '\n'.join(grid_svg)
+          last_year_total = sum(c['count'] for c in last_year_contribs)
 
-          svg = f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W}\" height=\"{H}\" viewBox=\"0 0 {W} {H}\" fill=\"none\">
+          graph_svg = f'''<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"{W_g}\" height=\"{H_g}\" viewBox=\"0 0 {W_g} {H_g}\" fill=\"none\">
             <defs>
               <linearGradient id=\"purpleGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\">
                 <stop offset=\"0%\" stop-color=\"#a855f7\" stop-opacity=\"0.45\" />
                 <stop offset=\"100%\" stop-color=\"#a855f7\" stop-opacity=\"0.0\" />
               </linearGradient>
             </defs>
-            <rect width=\"{W}\" height=\"{H}\" rx=\"12\" fill=\"#0d1117\" stroke=\"#30363d\" stroke-width=\"1\" />
+            <rect width=\"{W_g}\" height=\"{H_g}\" rx=\"12\" fill=\"#0d1117\" stroke=\"#30363d\" stroke-width=\"1\" />
             <text x=\"25\" y=\"35\" fill=\"#a855f7\" font-size=\"16\" font-weight=\"bold\" font-family=\"Segoe UI, -apple-system, sans-serif\">Karim&apos;s Contribution Graph</text>
-            <text x=\"{W - 25}\" y=\"35\" fill=\"#94a3b8\" font-size=\"13\" font-family=\"Segoe UI, -apple-system, sans-serif\" text-anchor=\"end\">{total} contributions in the last year</text>
+            <text x=\"{W_g - 25}\" y=\"35\" fill=\"#94a3b8\" font-size=\"13\" font-family=\"Segoe UI, -apple-system, sans-serif\" text-anchor=\"end\">{last_year_total} contributions in the last year</text>
             {grid_str}
             <path d=\"{area_path}\" fill=\"url(#purpleGrad)\" />
             <path d=\"{curve_path}\" fill=\"none\" stroke=\"#a855f7\" stroke-width=\"2.5\" stroke-linecap=\"round\" />
@@ -99,14 +187,14 @@ jobs:
           </svg>'''
 
           with open('profile-activity-graph.svg', 'w', encoding='utf-8') as f:
-              f.write(svg)
+              f.write(graph_svg)
           "
 
-      # 3. Commit and push the generated graph and summary cards
+      # Commit and push generated SVGs
       - name: Commit and Push SVGs
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add profile-activity-graph.svg profile-summary-card-output/ || true
-          git commit -m "chore: update stats and activity graph [skip ci]" || exit 0
+          git add profile-streak.svg profile-activity-graph.svg || true
+          git commit -m "chore: update streak and activity graph [skip ci]" || exit 0
           git push

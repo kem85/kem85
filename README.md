@@ -122,14 +122,17 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
 
 <div align="center">
 
-  <!-- 1. Profile Details & Stats Cards -->
-  <img src="https://raw.githubusercontent.com/kem85/kem85/main/profile-summary-card-output/tokyonight/0-profile-details.svg" alt="Profile Details" width="48.5%" />
-  <img src="https://raw.githubusercontent.com/kem85/kem85/main/profile-summary-card-output/tokyonight/3-stats.svg" alt="Activity Stats" width="48.5%" />
+  <!-- 1. Streak Card (Clickable) -->
+  <a href="https://github.com/kem85">
+    <img src="https://raw.githubusercontent.com/kem85/kem85/main/profile-streak.svg" alt="GitHub Streak" width="70%" />
+  </a>
 
   <br/><br/>
 
-  <!-- 2. Contribution Area Graph -->
-  <img src="https://raw.githubusercontent.com/kem85/kem85/main/profile-activity-graph.svg" alt="Karim's Contribution Graph" width="98%" />
+  <!-- 2. Contribution Area Graph (Clickable) -->
+  <a href="https://github.com/kem85">
+    <img src="https://raw.githubusercontent.com/kem85/kem85/main/profile-activity-graph.svg" alt="Karim's Contribution Graph" width="98%" />
+  </a>
 
 </div>
 
