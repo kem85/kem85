@@ -5,7 +5,7 @@
 # Hi there, I'm Karim 👋
 
 <a href="https://github.com/kem85">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&width=650&lines=AI+%26+Deep+Learning+Engineer;Full+Stack+Web+Developer;Creator+of+Chess-AI+%E2%99%9F%EF%B8%8F+%26+OmniTab-ML+%E2%9A%A1;Building+high-performance+neural+engines+%26+web+apps" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=3000&pause=1000&color=A855F7&center=true&vCenter=true&width=650&lines=AI+%26+Deep+Learning+Engineer;Full+Stack+Web+Developer;Creator+of+Chess-AI+%E2%99%9F%EF%B8%8F+%26+OmniPredict-Pro+%E2%9A%A1;Building+high-performance+neural+engines+%26+web+apps" alt="Typing SVG" />
 </a>
 
 <p>
@@ -14,7 +14,7 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
 
 <p>
   <a href="https://chess-ai-ml.streamlit.app/"><img src="https://img.shields.io/badge/♟️_Chess--AI-Live_Arena-a855f7?style=flat-square" alt="Chess-AI Live"/></a>
-  <a href="https://omnitab-ml.streamlit.app/"><img src="https://img.shields.io/badge/⚡_OmniTab--ML-Live_App-2563eb?style=flat-square" alt="OmniTab-ML Live"/></a>
+  <a href="https://omnipredict-pro.streamlit.app/"><img src="https://img.shields.io/badge/⚡_OmniPredict--Pro-Live_Studio-2563eb?style=flat-square" alt="OmniPredict-Pro Live"/></a>
   <a href="mailto:ahamedcool71@gmail.com"><img src="https://img.shields.io/badge/📫_Contact-Email_Me-10b981?style=flat-square" alt="Contact"/></a>
 </p>
 
@@ -42,17 +42,17 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
       </p>
     </td>
     <td width="50%" valign="top">
-      <h3 align="center">⚡ OmniTab-ML</h3>
+      <h3 align="center">⚡ OmniPredict Pro</h3>
       <p align="center">
-        <b>Tabular Auto-ML & Deep Learning</b><br/>
-        <a href="https://omnitab-ml.streamlit.app/">🌐 <b>Demo Web App</b></a> • 
-        <a href="https://github.com/kem85/OmniTab-ML">💻 <b>Explore Repository</b></a>
+        <b>Vision & Tabular Deep Learning AutoML</b><br/>
+        <a href="https://omnipredict-pro.streamlit.app/">🌐 <b>Demo Web App</b></a> • 
+        <a href="https://github.com/kem85/OmniPredict-Pro">💻 <b>Explore Repository</b></a>
       </p>
-      <p>Universal zero-leakage Tabular Auto-ML & Deep Learning engine with PyTorch Tabular ResNet, Bayesian Optuna tuning, and interactive cloud playgrounds.</p>
+      <p>Unified deep learning studio for tabular and computer vision datasets. Features Tabular ResNet, ImageNet vision CNNs, Bayesian Optuna tuning, and interactive live prediction playgrounds.</p>
       <p align="center">
-        <img src="https://img.shields.io/badge/PyTorch-Tabular-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch"/>
-        <img src="https://img.shields.io/badge/Optuna-Bayesian-2384CE?style=flat-square" alt="Optuna"/>
-        <img src="https://img.shields.io/badge/Auto--ML-Zero_Leakage-10B981?style=flat-square" alt="Auto-ML"/>
+        <img src="https://img.shields.io/badge/PyTorch-Vision_%26_Tabular-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" alt="PyTorch"/>
+        <img src="https://img.shields.io/badge/Optuna-Bayesian-2384CE?style=flat-square&logo=optuna" alt="Optuna"/>
+        <img src="https://img.shields.io/badge/Auto--ML-Zero_Code-10B981?style=flat-square" alt="Auto-ML"/>
         <img src="https://img.shields.io/badge/Streamlit-Live-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"/>
       </p>
     </td>
@@ -112,7 +112,7 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
 ### 🌱 Currently Exploring & Building
 
 - 🧠 **Neural Game AI & Tree Search**: AlphaZero/MuZero reinforcement learning architectures and search optimizations.
-- 🧬 **Tabular Deep Learning**: High-accuracy deep architectures and Bayesian hyperparameter tuning for structured datasets.
+- 🧬 **Universal Deep Learning**: Multi-modal AutoML architectures and Bayesian hyperparameter tuning for vision & structured data.
 - ⚡ **High-Speed Inference**: Low-latency model serving using ONNX Runtime, TensorRT, and INT8 quantization.
 - 🌐 **Modern Web Applications**: Crafting ultra-responsive, beautiful web interfaces and real-time tools.
 
@@ -132,7 +132,6 @@ Passionate about building high-performance <b>Deep Learning engines</b>, <b>scal
   ---
   <img src="https://raw.githubusercontent.com/kem85/kem85/main/svgs/profile-activity-graph.svg" alt="Karim's Contribution Graph" width="98%" />
 </div>
-
 
 ---
 
