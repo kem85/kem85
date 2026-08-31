@@ -15,7 +15,7 @@
   <rect x="1" y="1" width="493" height="193" rx="6" class="bg"/>
   
   <g transform="translate(82, 65)">
-    <text x="0" y="0" class="num" text-anchor="middle">286</text>
+    <text x="0" y="0" class="num" text-anchor="middle">287</text>
     <text x="0" y="32" class="lbl" text-anchor="middle">Total Contributions</text>
     <text x="0" y="58" class="date" text-anchor="middle">Nov 29, 2021 - Present</text>
   </g>
